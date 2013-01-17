@@ -4,3 +4,7 @@
 This is a small repo of example clients for the MLT framework.
 It documents my own learning of the framework, and hopefully provides
 good examples to learn from for others also learning MLT.
+
+This page gives an overview of Melt, a commandline program using MLT,
+and is the best "high level" overview of functionality that I've found yet:
+http://www.mltframework.org/bin/view/MLT/MltMelt

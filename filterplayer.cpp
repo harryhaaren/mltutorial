@@ -12,6 +12,19 @@
   Usage: filterplayer <file>
 */
 
+// this filterplayer is based on simpleplayer.cpp, if you haven't looked at that
+// yet, do so before looking here. These comments only explain the increment
+// between the files.
+
+// So we add a greyscale filter, the new video chain now looks like this:
+// producer -> filter -> consumer
+
+// the consumer still requests data, but does so from the filter, and the filter
+// in turn requests data from the producer.
+
+// See this link for a full list of filter plugins available
+// http://www.mltframework.org/bin/view/MLT/PluginsFilters
+
 #include <iostream>
 #include <unistd.h>
 #include <Mlt.h>
@@ -48,7 +61,7 @@ int main( int argc, char *argv[] )
   }
   else
   {
-    cout << "Filter created successfully, track = " << filter->get_track() << endl;
+    cout << "Filter created successfully" << endl;
   }
   
   // Create via the default producer

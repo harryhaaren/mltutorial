@@ -54,7 +54,12 @@ int main( int argc, char *argv[] )
   // Create the default consumer
   consumer = new Mlt::Consumer( *profile,"sdl");
   
+  // try out some different filters :)
   filter   = new Mlt::Filter  ( *profile, "greyscale");
+  //filter   = new Mlt::Filter  ( *profile, "invert");
+  //filter   = new Mlt::Filter  ( *profile, "tcolor");
+  //filter   = new Mlt::Filter  ( *profile, "threshold");
+  
   if ( !filter )
   {
     cout << "Error creating filter! " << endl;

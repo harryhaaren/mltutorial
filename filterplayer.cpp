@@ -54,20 +54,32 @@ int main( int argc, char *argv[] )
   // Create the default consumer
   consumer = new Mlt::Consumer( *profile,"sdl");
   
-  // try out some different filters :)
-  filter   = new Mlt::Filter  ( *profile, "greyscale");
-  //filter   = new Mlt::Filter  ( *profile, "invert");
-  //filter   = new Mlt::Filter  ( *profile, "tcolor");
-  //filter   = new Mlt::Filter  ( *profile, "threshold");
+  // try out some different filters?
+  filter = new Mlt::Filter ( *profile, "greyscale");
+  //filter = new Mlt::Filter ( *profile, "invert");
+  //filter = new Mlt::Filter ( *profile, "tcolor");
+  //filter = new Mlt::Filter ( *profile, "threshold");
+  
+  
+  // the pixeliz0r filter has two properties:
+  //  BlockSizeX
+  //  BlockSizeY
+  // we can set them trough the generic .set( "name" , value ); method
+  // that belongs to "Service", implemented trough the Properties class.
+  // char*, int, double and void* are the datatypes allowed.
+  // check the filters metadata as to what it expects for each name
+  // http://www.mltframework.org/bin/view/MLT/FilterFrei0r-pixeliz0r
+  if ( false ) // change to true to enable filter
+  {
+    filter   = new Mlt::Filter  ( *profile, "frei0r.pixeliz0r");
+    filter->set( "BlockSizeX", 0.1 );
+    filter->set( "BlockSizeY", 0.1 );
+  }
   
   if ( !filter )
-  {
     cout << "Error creating filter! " << endl;
-  }
   else
-  {
     cout << "Filter created successfully" << endl;
-  }
   
   // Create via the default producer
   producer = new Mlt::Producer( *profile,NULL, argv[ 1 ] );
@@ -89,6 +101,9 @@ int main( int argc, char *argv[] )
   
   // Close the producer
   delete(producer);
+  
+  // Close the filter
+  delete(filter);
   
   // Close the factory
   Mlt::Factory::close();
